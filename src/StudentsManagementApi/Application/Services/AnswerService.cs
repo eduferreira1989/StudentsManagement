@@ -64,6 +64,7 @@ public class AnswerService : IAnswerService
         {
             studentAnswer.AnswerText = answer.AnswerText;
             studentAnswer.AnswerCorrect = answerCorrect;
+            studentAnswer.Grade = answerCorrect ? question.Value : 0f;
 
             // Apply update
             await _answerRepository.UpdateAsync(studentAnswer);
@@ -76,8 +77,9 @@ public class AnswerService : IAnswerService
                 StudentExamId = studentExam.Id,
                 QuestionId = question.Id,
                 AnswerText = answer.AnswerText,
-                AnswerCorrect = answerCorrect
-            };
+                AnswerCorrect = answerCorrect,
+                Grade = answerCorrect ? question.Value : 0f
+        };
 
             // Apply save
             await _answerRepository.AddAsync(studentAnswer);

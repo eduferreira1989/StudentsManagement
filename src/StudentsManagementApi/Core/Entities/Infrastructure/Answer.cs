@@ -9,4 +9,6 @@ public class Answer : Entity
     public string AnswerText { get; set; }
 
     public bool AnswerCorrect { get; set; }
+
+    public float Grade { get; set; }
 }

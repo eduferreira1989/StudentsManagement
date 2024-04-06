@@ -9,10 +9,12 @@ namespace StudentsManagementApi.Application.Services;
 public class StudentService : IStudentService
 {
     private readonly IStudentRepository _studentRepository;
+    private readonly IStudentExamService _studentExamService;
 
-    public StudentService(IStudentRepository studentRepository)
+    public StudentService(IStudentRepository studentRepository, IStudentExamService studentExamService)
     {
         _studentRepository = studentRepository ?? throw new ArgumentNullException(nameof(studentRepository));
+        _studentExamService = studentExamService ?? throw new ArgumentNullException(nameof(studentExamService));
     }
 
     public async Task<DomainResponse<StudentModel>> GetStudentById(int id)
@@ -21,7 +23,22 @@ public class StudentService : IStudentService
         if (student == null)
             return new DomainResponse<StudentModel> { Errors = [new Error { Message = "Student not found", HttpCode = System.Net.HttpStatusCode.NotFound }] };
 
-        return new DomainResponse<StudentModel> { Result = student.Adapt<StudentModel>() };
+        var studentModel = student.Adapt<StudentModel>();
+
+        // Get details from StudentExamService
+        foreach (var studentExam in studentModel.StudentExams)
+        {
+            var studentExamResponse = await _studentExamService.FillStudentExamDetails(studentExam);
+            if (studentExamResponse.Errors.Any())
+            {
+                return new DomainResponse<StudentModel> { Errors = studentExamResponse.Errors };
+            }
+
+            studentExam.Exam = studentExamResponse.Result.Exam;
+            studentExam.Answers = studentExamResponse.Result.Answers;
+        }
+
+        return new DomainResponse<StudentModel> { Result = studentModel };
     }
 
     public async Task<DomainResponse<IEnumerable<StudentModel>>> GetStudentsByExam(int examId)

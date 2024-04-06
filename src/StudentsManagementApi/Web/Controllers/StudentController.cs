@@ -37,7 +37,7 @@ public class StudentController : ControllerBase
                     ? NotFound(response.Errors)
                     : BadRequest(response.Errors);
 
-            return Ok(response.Result.Adapt<StudentDto>());
+            return Ok(response.Result.Adapt<StudentDetailedResponseDto>());
         }
         catch (Exception ex)
         {
@@ -67,7 +67,7 @@ public class StudentController : ControllerBase
                     ? NotFound(response.Errors)
                     : BadRequest(response.Errors);
 
-            return Ok(response.Result.Adapt<List<StudentDto>>());
+            return Ok(response.Result.Adapt<List<StudentResponseDto>>());
         }
         catch (Exception ex)
         {

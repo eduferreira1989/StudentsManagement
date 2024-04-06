@@ -5,6 +5,7 @@ using StudentsManagementApi.Core.Interfaces.Infrastructure;
 using StudentsManagementApi.Infrastructure.Data;
 using StudentsManagementApi.Infrastructure.Repositories;
 using StudentsManagementApi.Infrastructure.Repositories.Base;
+using StudentsManagementApi.Web.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.RegisterMapsterConfiguration();
 
 // Add infrastructure Services
 builder.Services.AddDbContext<StudentsApiDbContext>(opt => opt.UseInMemoryDatabase("Database"), ServiceLifetime.Singleton);
@@ -25,6 +27,7 @@ builder.Services.AddScoped<IExamRepository, ExamRepository>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IAnswerService, AnswerService>();
 builder.Services.AddScoped<IExamService, ExamService>();
+builder.Services.AddScoped<IStudentExamService, StudentExamService>();
 
 var app = builder.Build();
 

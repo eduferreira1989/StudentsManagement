@@ -38,7 +38,7 @@ public class AnswerController : ControllerBase
                     ? NotFound(response.Errors)
                     : BadRequest(response.Errors);
 
-            return Ok(response.Result.Adapt<AnswerDto>());
+            return Ok(response.Result.Adapt<AnswerResponseDto>());
         }
         catch (Exception ex)
         {
@@ -72,7 +72,7 @@ public class AnswerController : ControllerBase
                     ? NotFound(response.Errors)
                     : BadRequest(response.Errors);
 
-            return Created($"/Answer/{response.Result.Id}", response.Result.Adapt<AnswerDto>());
+            return Created($"/Answer/{response.Result.Id}", response.Result.Adapt<AnswerResponseDto>());
         }
         catch (Exception ex)
         {

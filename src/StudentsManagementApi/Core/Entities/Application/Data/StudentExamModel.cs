@@ -15,5 +15,7 @@ public class StudentExamModel : DomainModel
 
     public int ExamId { get; set; }
 
+    public float Grade { get; set; }
+
     public ICollection<AnswerModel> Answers { get; set; }
 }
