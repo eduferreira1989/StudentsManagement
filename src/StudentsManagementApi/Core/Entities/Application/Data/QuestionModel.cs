@@ -9,6 +9,8 @@ public class QuestionModel : DomainModel
 
     public ExamModel Exam { get; set; }
 
+    public int ExamId { get; set; }
+
     public string QuestionText { get; set; }
 
     public float Value { get; set; }

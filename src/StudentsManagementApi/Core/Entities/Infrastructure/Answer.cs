@@ -1,12 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace StudentsManagementApi.Core.Entities.Infrastructure;
+﻿namespace StudentsManagementApi.Core.Entities.Infrastructure;
 
 public class Answer : Entity
 {
-    public StudentExam StudentExam { get; set; }
+    public int StudentExamId { get; set; }
 
-    public Question Question { get; set; }
+    public int QuestionId { get; set; }
 
     public string AnswerText { get; set; }
 

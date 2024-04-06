@@ -5,5 +5,7 @@ namespace StudentsManagementApi.Core.Interfaces.Application;
 
 public interface IAnswerService
 {
-    Task<DomainResponse<bool>> AddOrUpdateAnswer(AddAnswerModel answer);
+    Task<DomainResponse<AnswerModel>> GetAnswerById(int id);
+
+    Task<DomainResponse<AnswerModel>> AddOrUpdateAnswer(AddAnswerModel answer);
 }

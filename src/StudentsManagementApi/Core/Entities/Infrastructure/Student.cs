@@ -11,5 +11,7 @@ public class Student : Entity
 
     public string Name { get; set; }
 
+    public DateOnly BirthDate  { get; set; }
+
     public ICollection<StudentExam> StudentExams { get; set; }
 }

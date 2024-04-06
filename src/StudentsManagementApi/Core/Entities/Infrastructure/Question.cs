@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace StudentsManagementApi.Core.Entities.Infrastructure;
+﻿namespace StudentsManagementApi.Core.Entities.Infrastructure;
 
 public class Question : Entity
 {
@@ -9,7 +7,7 @@ public class Question : Entity
         ExpectedAnswers = new List<ExpectedAnswer>();
     }
 
-    public Exam Exam { get; set; }
+    public int ExamId { get; set; }
 
     public string QuestionText { get; set; }
 

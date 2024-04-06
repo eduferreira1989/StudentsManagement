@@ -18,37 +18,45 @@ public class AnswerService : IAnswerService
         _examService = examService ?? throw new ArgumentNullException(nameof(examService));
     }
 
-    public async Task<DomainResponse<bool>> AddOrUpdateAnswer(AddAnswerModel answer)
+    public async Task<DomainResponse<AnswerModel>> GetAnswerById(int id)
+    {
+        var answer = await _answerRepository.GetByIdAsyncNoTracking(id);
+        if (answer == null)
+            return new DomainResponse<AnswerModel> { Errors = [new Error { Message = "Answer not found", HttpCode = System.Net.HttpStatusCode.NotFound }] };
+
+        return new DomainResponse<AnswerModel> { Result = answer.Adapt<AnswerModel>() };
+    }
+
+    public async Task<DomainResponse<AnswerModel>> AddOrUpdateAnswer(AddAnswerModel answer)
     {
         // Validate inputs
         var validationResults = ValidateInput(answer);
         if (validationResults != null)
-            return new DomainResponse<bool> { Errors = [validationResults]};
+            return new DomainResponse<AnswerModel> { Errors = [validationResults]};
 
         // Get exam from ExamService
         var examResponse = await _examService.GetExamById(answer.ExamId);
         if (examResponse.Errors.Any())
-            return new DomainResponse<bool> { Result = false, Errors = examResponse.Errors };
+            return new DomainResponse<AnswerModel> { Errors = examResponse.Errors };
 
         var exam = examResponse.Result;
 
         // Find the StudentExam
-        var studentExam = exam.StudentExam.SingleOrDefault(studentExam => studentExam.Student.Id == answer.StudentId);
+        var studentExam = exam.StudentExams.SingleOrDefault(studentExam => studentExam.StudentId == answer.StudentId);
         if (studentExam == null)
-            return new DomainResponse<bool> { Result = false, Errors = [new Error { Message = "Invalid Student", HttpCode = System.Net.HttpStatusCode.BadRequest }] };
+            return new DomainResponse<AnswerModel> { Errors = [new Error { Message = "Invalid Student", HttpCode = System.Net.HttpStatusCode.BadRequest }] };
 
         // Find Question
         var question = exam.Questions.SingleOrDefault(question => question.Id == answer.QuestionId);
         if (question == null)
-            return new DomainResponse<bool> { Result = false, Errors = [new Error { Message = "Invalid Question", HttpCode = System.Net.HttpStatusCode.BadRequest }] };
+            return new DomainResponse<AnswerModel> { Errors = [new Error { Message = "Invalid Question", HttpCode = System.Net.HttpStatusCode.BadRequest }] };
 
         // Check if answer is correct
         var expectedAnswers = question.ExpectedAnswers.ToList();
         var answerCorrect = expectedAnswers.Any(answerCorrect => answerCorrect.Answer.Equals(answer.AnswerText, StringComparison.InvariantCultureIgnoreCase));
 
         // Save or update the answer
-        var studentAnswers = await _answerRepository.GetAsync(studentAnswer => studentAnswer.StudentExam.Student.Id == answer.StudentId 
-                                    && studentAnswer.StudentExam.Exam.Id == answer.ExamId && studentAnswer.Question.Id == answer.QuestionId);
+        var studentAnswers = await _answerRepository.GetAsync(studentAnswer => studentAnswer.StudentExamId == studentExam.Id && studentAnswer.QuestionId == answer.QuestionId);
 
         var studentAnswer = studentAnswers.SingleOrDefault();
 
@@ -65,8 +73,8 @@ public class AnswerService : IAnswerService
             studentAnswer = new Answer
             {
                 Id = answer.Id,
-                StudentExam = studentExam.Adapt<StudentExam>(),
-                Question = question.Adapt<Question>(),
+                StudentExamId = studentExam.Id,
+                QuestionId = question.Id,
                 AnswerText = answer.AnswerText,
                 AnswerCorrect = answerCorrect
             };
@@ -75,7 +83,7 @@ public class AnswerService : IAnswerService
             await _answerRepository.AddAsync(studentAnswer);
         }
 
-        return new DomainResponse<bool> { Result = true };
+        return new DomainResponse<AnswerModel> { Result = studentAnswer.Adapt<AnswerModel>() };
 
     }
 

@@ -55,7 +55,7 @@ public class Repository<T> : IRepository<T> where T : Entity
 
     public virtual async Task<T?> GetByIdAsyncNoTracking(int id)
     {
-        return await _dbContext.Set<T>().AsNoTracking().SingleAsync(entity => entity.Id == id);
+        return await _dbContext.Set<T>().AsNoTracking().SingleOrDefaultAsync(entity => entity.Id == id);
     }
 
     public async Task UpdateAsync(T entity)

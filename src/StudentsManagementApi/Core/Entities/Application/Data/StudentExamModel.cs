@@ -9,7 +9,11 @@ public class StudentExamModel : DomainModel
 
     public StudentModel Student { get; set; }
 
+    public int StudentId { get; set; }
+
     public ExamModel Exam { get; set; }
+
+    public int ExamId { get; set; }
 
     public ICollection<AnswerModel> Answers { get; set; }
 }

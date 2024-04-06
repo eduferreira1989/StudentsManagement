@@ -26,7 +26,7 @@ public class StudentController : ControllerBase
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public async Task<IActionResult> GetStudentById(int id)
     {
-        _logger.LogInformation($"Getting students by Id: {id}");
+        _logger.LogInformation($"Getting student by Id: {id}");
         try
         {
             var response = await _studentService.GetStudentById(id);
@@ -37,7 +37,7 @@ public class StudentController : ControllerBase
                     ? NotFound(response.Errors)
                     : BadRequest(response.Errors);
 
-            return new OkObjectResult(response.Result.Adapt<List<StudentDto>>());
+            return Ok(response.Result.Adapt<StudentDto>());
         }
         catch (Exception ex)
         {
@@ -67,7 +67,7 @@ public class StudentController : ControllerBase
                     ? NotFound(response.Errors)
                     : BadRequest(response.Errors);
 
-            return new OkObjectResult(response.Result.Adapt<List<StudentDto>>());
+            return Ok(response.Result.Adapt<List<StudentDto>>());
         }
         catch (Exception ex)
         {

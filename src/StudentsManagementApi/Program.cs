@@ -15,7 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add infrastructure Services
-builder.Services.AddDbContext<StudentsApiDbContext>(opt => opt.UseInMemoryDatabase("Database"));
+builder.Services.AddDbContext<StudentsApiDbContext>(opt => opt.UseInMemoryDatabase("Database"), ServiceLifetime.Singleton);
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<IAnswerRepository, AnswerRepository>();

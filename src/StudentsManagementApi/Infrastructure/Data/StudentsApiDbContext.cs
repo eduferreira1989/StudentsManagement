@@ -127,14 +127,14 @@ public class StudentsApiDbContext : DbContext
             Value = 10.0f
         };
 
-        expectedAnswer1.Question = question1;
-        expectedAnswer2.Question = question2;
-        expectedAnswer3.Question = question3;
-        expectedAnswer4.Question = question4;
-        expectedAnswer5.Question = question5;
-        expectedAnswer6.Question = question6;
-        expectedAnswer7.Question = question6;
-        expectedAnswer8.Question = question6;
+        expectedAnswer1.QuestionId = question1.Id;
+        expectedAnswer2.QuestionId = question2.Id;
+        expectedAnswer3.QuestionId = question3.Id;
+        expectedAnswer4.QuestionId = question4.Id;
+        expectedAnswer5.QuestionId = question5.Id;
+        expectedAnswer6.QuestionId = question6.Id;
+        expectedAnswer7.QuestionId = question6.Id;
+        expectedAnswer8.QuestionId = question6.Id;
 
         #endregion
 
@@ -164,12 +164,12 @@ public class StudentsApiDbContext : DbContext
             Questions = [question6]
         };
 
-        question1.Exam = exam1;
-        question2.Exam = exam1;
-        question3.Exam = exam1;
-        question4.Exam = exam2;
-        question5.Exam = exam2;
-        question6.Exam = exam3;
+        question1.ExamId = exam1.Id;
+        question2.ExamId = exam1.Id;
+        question3.ExamId = exam1.Id;
+        question4.ExamId = exam2.Id;
+        question5.ExamId = exam2.Id;
+        question6.ExamId = exam3.Id;
 
         #endregion
 
@@ -178,31 +178,36 @@ public class StudentsApiDbContext : DbContext
         var student1 = new Student
         {
             Id = 1,
-            Name = "Eduardo Ferreira"
+            Name = "Eduardo Ferreira",
+            BirthDate = new DateOnly(1989, 5, 3)
         };
 
         var student2 = new Student
         {
             Id = 2,
-            Name = "Lewis Hamilton"
+            Name = "Lewis Hamilton",
+            BirthDate = new DateOnly(1985, 1, 7)
         };
 
         var student3 = new Student
         {
             Id = 3,
-            Name = "Max Verstappen"
+            Name = "Max Verstappen",
+            BirthDate = new DateOnly(1997, 9, 30)
         };
 
         var student4 = new Student
         {
             Id = 4,
-            Name = "Simone Simons"
+            Name = "Simone Simons",
+            BirthDate = new DateOnly(1985, 1, 17)
         };
 
         var student5 = new Student
         {
             Id = 5,
-            Name = "Floor Jansen"
+            Name = "Floor Jansen",
+            BirthDate = new DateOnly(1981, 2, 21)
         };
 
         #endregion
@@ -213,50 +218,50 @@ public class StudentsApiDbContext : DbContext
         var studentExam1 = new StudentExam
         {
             Id = 1,
-            Student = student1,
-            Exam = exam1
+            StudentId = student1.Id,
+            ExamId = exam1.Id
         };
 
         var studentExam2 = new StudentExam
         {
             Id = 2,
-            Student = student1,
-            Exam = exam2
+            StudentId = student1.Id,
+            ExamId = exam2.Id
         };
 
         var studentExam3 = new StudentExam
         {
             Id = 3,
-            Student = student2,
-            Exam = exam2
+            StudentId = student2.Id,
+            ExamId = exam2.Id
         };
 
         var studentExam4 = new StudentExam
         {
             Id = 4,
-            Student = student3,
-            Exam = exam1
+            StudentId = student3.Id,
+            ExamId = exam1.Id
         };
 
         var studentExam5 = new StudentExam
         {
             Id = 5,
-            Student = student5,
-            Exam = exam1
+            StudentId = student5.Id,
+            ExamId = exam1.Id
         };
 
         var studentExam6 = new StudentExam
         {
             Id = 6,
-            Student = student5,
-            Exam = exam3
+            StudentId = student5.Id,
+            ExamId = exam3.Id
         };
 
         var studentExam7 = new StudentExam
         {
             Id = 7,
-            Student = student4,
-            Exam = exam3
+            StudentId = student4.Id,
+            ExamId = exam3.Id
         };
 
         student1.StudentExams = [studentExam1, studentExam2];

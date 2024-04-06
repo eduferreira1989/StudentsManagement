@@ -16,10 +16,9 @@ public class ExamRepository : Repository<Exam>, IExamRepository
     {
         return await _dbContext.Set<Exam>()
             .Include(e => e.StudentExams)
-            .ThenInclude(se => se.Student)
             .Include(e => e.Questions)
             .ThenInclude(q => q.ExpectedAnswers)
             .AsNoTracking()
-            .SingleAsync(entity => entity.Id == id);
+            .SingleOrDefaultAsync(entity => entity.Id == id);
     }
 }

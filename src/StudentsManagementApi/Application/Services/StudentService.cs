@@ -17,16 +17,16 @@ public class StudentService : IStudentService
 
     public async Task<DomainResponse<StudentModel>> GetStudentById(int id)
     {
-        var exam = await _studentRepository.GetByIdWithDetailsAsyncNoTracking(id);
-        if (exam == null)
+        var student = await _studentRepository.GetByIdWithDetailsAsyncNoTracking(id);
+        if (student == null)
             return new DomainResponse<StudentModel> { Errors = [new Error { Message = "Student not found", HttpCode = System.Net.HttpStatusCode.NotFound }] };
 
-        return new DomainResponse<StudentModel> { Result = exam.Adapt<StudentModel>() };
+        return new DomainResponse<StudentModel> { Result = student.Adapt<StudentModel>() };
     }
 
     public async Task<DomainResponse<IEnumerable<StudentModel>>> GetStudentsByExam(int examId)
     {
-        var students = await _studentRepository.GetAsyncNoTracking(student => student.StudentExams.Any(exam => exam.Exam.Id == examId));
+        var students = await _studentRepository.GetAsyncNoTracking(student => student.StudentExams.Any(exam => exam.ExamId == examId));
 
         var studentsResponse = new DomainResponse<IEnumerable<StudentModel>>
         {

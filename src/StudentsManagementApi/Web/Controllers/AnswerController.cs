@@ -21,6 +21,36 @@ public class AnswerController : ControllerBase
         _answerService = answerService ?? throw new ArgumentNullException(nameof(answerService));
     }
 
+    [HttpGet("{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> GetAnswerById(int id)
+    {
+        _logger.LogInformation($"Getting answer by Id: {id}");
+        try
+        {
+            var response = await _answerService.GetAnswerById(id);
+
+            // Return business error
+            if (response.Errors.Any())
+                return response.Errors.Any(x => x.HttpCode.Equals(HttpStatusCode.NotFound))
+                    ? NotFound(response.Errors)
+                    : BadRequest(response.Errors);
+
+            return Ok(response.Result.Adapt<AnswerDto>());
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError($"error: {ex.Message}");
+            return new ContentResult
+            {
+                StatusCode = (int)HttpStatusCode.InternalServerError,
+                Content = "An error occurred while processing the request."
+            };
+        }
+    }
+
     [HttpPost("/addAnswer/{examId}")]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -42,7 +72,7 @@ public class AnswerController : ControllerBase
                     ? NotFound(response.Errors)
                     : BadRequest(response.Errors);
 
-            return Created();
+            return Created($"/Answer/{response.Result.Id}", response.Result.Adapt<AnswerDto>());
         }
         catch (Exception ex)
         {

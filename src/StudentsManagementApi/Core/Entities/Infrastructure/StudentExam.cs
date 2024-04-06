@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace StudentsManagementApi.Core.Entities.Infrastructure;
+﻿namespace StudentsManagementApi.Core.Entities.Infrastructure;
 
 public class StudentExam : Entity
 {
@@ -9,9 +7,9 @@ public class StudentExam : Entity
         Answers = new List<Answer>();
     }
 
-    public Student Student { get; set; }
+    public int StudentId { get; set; }
 
-    public Exam Exam { get; set; }
+    public int ExamId { get; set; }
 
     public ICollection<Answer> Answers { get; set; }
 }

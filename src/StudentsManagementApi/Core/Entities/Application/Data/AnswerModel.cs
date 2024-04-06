@@ -4,7 +4,11 @@ public class AnswerModel : DomainModel
 {
     public StudentExamModel StudentExam { get; set; }
 
+    public int StudentExamId { get; set; }
+
     public QuestionModel Question { get; set; }
+
+    public int QuestionId { get; set; }
 
     public string AnswerText { get; set; }
 
