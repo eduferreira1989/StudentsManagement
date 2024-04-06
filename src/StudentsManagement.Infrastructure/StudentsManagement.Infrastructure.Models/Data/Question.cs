@@ -1,4 +1,5 @@
 ﻿using StudentsManagement.Infrastructure.Models.Data.Base;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StudentsManagement.Infrastructure.Models.Data;
 
@@ -9,6 +10,7 @@ public class Question : BaseEntity
         ExpectedAnswers = new List<ExpectedAnswer>();
     }
 
+    [ForeignKey("Exam")]
     public int ExamId { get; set; }
 
     public string QuestionText { get; set; }
