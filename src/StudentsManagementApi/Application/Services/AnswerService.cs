@@ -71,6 +71,10 @@ public class AnswerService : IAnswerService
         }
         else
         {
+            // Validate AnswerId
+            if (await _answerRepository.GetByIdAsyncNoTracking(answer.Id) != null)
+                return new DomainResponse<AnswerModel> { Errors = [new Error { Message = "Invalid AnswerId, already in use by another answer", HttpCode = System.Net.HttpStatusCode.BadRequest }] };
+
             studentAnswer = new Answer
             {
                 Id = answer.Id,

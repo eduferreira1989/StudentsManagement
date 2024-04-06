@@ -48,7 +48,7 @@ public class StudentsApiDbContext : DbContext
         var expectedAnswer4 = new ExpectedAnswer
         {
             Id = 4,
-            Answer = "It is a language with fast learning curve and there are several libraries and platfroms developed for this purpose using Python."
+            Answer = "It is a language with fast learning curve and there are several libraries and platforms developed for this purpose using Python."
         };
 
         var expectedAnswer5 = new ExpectedAnswer
