@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mapster" Version="7.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StudentsManagement.Application\StudentsManagement.Application.Interfaces\StudentsManagement.Application.Interfaces.csproj" />
+    <ProjectReference Include="..\StudentsManagement.Application\StudentsManagement.Application.Models\StudentsManagement.Application.Models.csproj" />
+    <ProjectReference Include="..\StudentsManagement.Application\StudentsManagement.Application\StudentsManagement.Application.csproj" />
+    <ProjectReference Include="..\StudentsManagement.Infrastructure\StudentsManagement.Infrastructure.Interfaces\StudentsManagement.Infrastructure.Interfaces.csproj" />
+    <ProjectReference Include="..\StudentsManagement.Infrastructure\StudentsManagement.Infrastructure\StudentsManagement.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

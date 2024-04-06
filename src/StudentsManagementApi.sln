@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentsManagementApi", "StudentsManagementApi\StudentsManagementApi.csproj", "{8436A8A9-ABEE-4B06-ADD0-B828757A0E98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentsManagement.Web", "StudentsManagement.Web\StudentsManagement.Web.csproj", "{8436A8A9-ABEE-4B06-ADD0-B828757A0E98}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StudentsManagement.Application", "StudentsManagement.Application", "{46C74B26-A1D8-4726-BAA3-20CA061B0D1B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StudentsManagement.Infrastructure", "StudentsManagement.Infrastructure", "{39B60435-1155-4298-9290-E2B4E64DC78B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentsManagement.Application.Interfaces", "StudentsManagement.Application\StudentsManagement.Application.Interfaces\StudentsManagement.Application.Interfaces.csproj", "{FBDF328C-EAA8-414F-A58D-82C06ADBC244}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentsManagement.Application.Models", "StudentsManagement.Application\StudentsManagement.Application.Models\StudentsManagement.Application.Models.csproj", "{774B0DF6-4E9F-4089-847A-D656D2CAB731}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentsManagement.Application", "StudentsManagement.Application\StudentsManagement.Application\StudentsManagement.Application.csproj", "{E867157C-6F7D-4E9E-A6FC-C85B7904D1D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentsManagement.Infrastructure", "StudentsManagement.Infrastructure\StudentsManagement.Infrastructure\StudentsManagement.Infrastructure.csproj", "{F07CC9D0-7F63-42FF-B73E-0DAE3CDE3C19}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentsManagement.Infrastructure.Interfaces", "StudentsManagement.Infrastructure\StudentsManagement.Infrastructure.Interfaces\StudentsManagement.Infrastructure.Interfaces.csproj", "{BAA43A16-A8A7-431D-8662-ED09FF19E766}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StudentsManagement.Infrastructure.Models", "StudentsManagement.Infrastructure\StudentsManagement.Infrastructure.Models\StudentsManagement.Infrastructure.Models.csproj", "{435430D4-EDB5-4E47-BAE0-18DB0A001AAD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StudentsManagement.Web", "StudentsManagement.Web", "{D1860C42-B63A-4278-A507-81AF660D65D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +33,42 @@ Global
 		{8436A8A9-ABEE-4B06-ADD0-B828757A0E98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8436A8A9-ABEE-4B06-ADD0-B828757A0E98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8436A8A9-ABEE-4B06-ADD0-B828757A0E98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBDF328C-EAA8-414F-A58D-82C06ADBC244}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBDF328C-EAA8-414F-A58D-82C06ADBC244}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBDF328C-EAA8-414F-A58D-82C06ADBC244}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBDF328C-EAA8-414F-A58D-82C06ADBC244}.Release|Any CPU.Build.0 = Release|Any CPU
+		{774B0DF6-4E9F-4089-847A-D656D2CAB731}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{774B0DF6-4E9F-4089-847A-D656D2CAB731}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{774B0DF6-4E9F-4089-847A-D656D2CAB731}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{774B0DF6-4E9F-4089-847A-D656D2CAB731}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E867157C-6F7D-4E9E-A6FC-C85B7904D1D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E867157C-6F7D-4E9E-A6FC-C85B7904D1D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E867157C-6F7D-4E9E-A6FC-C85B7904D1D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E867157C-6F7D-4E9E-A6FC-C85B7904D1D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F07CC9D0-7F63-42FF-B73E-0DAE3CDE3C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F07CC9D0-7F63-42FF-B73E-0DAE3CDE3C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F07CC9D0-7F63-42FF-B73E-0DAE3CDE3C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F07CC9D0-7F63-42FF-B73E-0DAE3CDE3C19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAA43A16-A8A7-431D-8662-ED09FF19E766}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAA43A16-A8A7-431D-8662-ED09FF19E766}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAA43A16-A8A7-431D-8662-ED09FF19E766}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAA43A16-A8A7-431D-8662-ED09FF19E766}.Release|Any CPU.Build.0 = Release|Any CPU
+		{435430D4-EDB5-4E47-BAE0-18DB0A001AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{435430D4-EDB5-4E47-BAE0-18DB0A001AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{435430D4-EDB5-4E47-BAE0-18DB0A001AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{435430D4-EDB5-4E47-BAE0-18DB0A001AAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8436A8A9-ABEE-4B06-ADD0-B828757A0E98} = {D1860C42-B63A-4278-A507-81AF660D65D9}
+		{FBDF328C-EAA8-414F-A58D-82C06ADBC244} = {46C74B26-A1D8-4726-BAA3-20CA061B0D1B}
+		{774B0DF6-4E9F-4089-847A-D656D2CAB731} = {46C74B26-A1D8-4726-BAA3-20CA061B0D1B}
+		{E867157C-6F7D-4E9E-A6FC-C85B7904D1D6} = {46C74B26-A1D8-4726-BAA3-20CA061B0D1B}
+		{F07CC9D0-7F63-42FF-B73E-0DAE3CDE3C19} = {39B60435-1155-4298-9290-E2B4E64DC78B}
+		{BAA43A16-A8A7-431D-8662-ED09FF19E766} = {39B60435-1155-4298-9290-E2B4E64DC78B}
+		{435430D4-EDB5-4E47-BAE0-18DB0A001AAD} = {39B60435-1155-4298-9290-E2B4E64DC78B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A3533B3C-7947-41E6-8E43-BCC8E1BDAF4E}
