@@ -15,7 +15,7 @@ public class StudentExamService : IStudentExamService
 
     public async Task<DomainResponse<StudentExamModel>> FillStudentExamDetails(StudentExamModel studentExam)
     {
-        var examResponse = await _examService.GetExamById(studentExam.ExamId);
+        var examResponse = await _examService.GetExamByIdWithDetails(studentExam.ExamId);
         if (examResponse.Errors.Any())
         {
             if (examResponse.Errors.Any(error => error.HttpCode == System.Net.HttpStatusCode.NotFound))

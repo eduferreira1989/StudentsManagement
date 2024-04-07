@@ -10,11 +10,13 @@ public class StudentService : IStudentService
 {
     private readonly IStudentRepository _studentRepository;
     private readonly IStudentExamService _studentExamService;
+    private readonly IExamService _examService;
 
-    public StudentService(IStudentRepository studentRepository, IStudentExamService studentExamService)
+    public StudentService(IStudentRepository studentRepository, IStudentExamService studentExamService, IExamService examService)
     {
         _studentRepository = studentRepository ?? throw new ArgumentNullException(nameof(studentRepository));
         _studentExamService = studentExamService ?? throw new ArgumentNullException(nameof(studentExamService));
+        _examService = examService ?? throw new ArgumentNullException(nameof(examService));
     }
 
     public async Task<DomainResponse<StudentModel>> GetStudentById(int id)
@@ -30,9 +32,7 @@ public class StudentService : IStudentService
         {
             var studentExamResponse = await _studentExamService.FillStudentExamDetails(studentExam);
             if (studentExamResponse.Errors.Any())
-            {
                 return new DomainResponse<StudentModel> { Errors = studentExamResponse.Errors };
-            }
 
             studentExam.Exam = studentExamResponse.Result.Exam;
             studentExam.Answers = studentExamResponse.Result.Answers;
@@ -43,6 +43,10 @@ public class StudentService : IStudentService
 
     public async Task<DomainResponse<IEnumerable<StudentModel>>> GetStudentsByExam(int examId)
     {
+        var exam = await _examService.GetExamById(examId);
+        if (exam.Errors.Any())
+            return new DomainResponse<IEnumerable<StudentModel>> { Errors = exam.Errors };
+
         var students = await _studentRepository.GetAsyncNoTracking(student => student.StudentExams.Any(exam => exam.ExamId == examId));
 
         var studentsResponse = new DomainResponse<IEnumerable<StudentModel>>

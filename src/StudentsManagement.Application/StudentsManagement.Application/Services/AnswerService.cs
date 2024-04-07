@@ -35,7 +35,7 @@ public class AnswerService : IAnswerService
             return new DomainResponse<AnswerModel> { Errors = [validationResults] };
 
         // Get exam from ExamService
-        var examResponse = await _examService.GetExamById(answer.ExamId);
+        var examResponse = await _examService.GetExamByIdWithDetails(answer.ExamId);
         if (examResponse.Errors.Any())
             return new DomainResponse<AnswerModel> { Errors = examResponse.Errors };
 

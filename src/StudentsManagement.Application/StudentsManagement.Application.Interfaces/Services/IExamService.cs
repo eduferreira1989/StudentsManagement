@@ -6,4 +6,6 @@ namespace StudentsManagement.Application.Interfaces.Services;
 public interface IExamService
 {
     Task<DomainResponse<ExamModel>> GetExamById(int id);
+
+    Task<DomainResponse<ExamModel>> GetExamByIdWithDetails(int id);
 }
