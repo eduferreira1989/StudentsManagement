@@ -4,10 +4,10 @@ public class DomainResponse<T>
 {
     public DomainResponse()
     {
-        Errors = new List<Error>();
+        Errors = new List<DomainError>();
     }
 
-    public DomainResponse(T result, IEnumerable<Error> errors)
+    public DomainResponse(T result, IEnumerable<DomainError> errors)
     {
         Result = result;
         Errors = errors;
@@ -15,5 +15,5 @@ public class DomainResponse<T>
 
     public T Result { get; set; }
 
-    public IEnumerable<Error> Errors { get; set; }
+    public IEnumerable<DomainError> Errors { get; set; }
 }

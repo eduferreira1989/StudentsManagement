@@ -2,14 +2,14 @@
 
 namespace StudentsManagement.Application.Models.Response;
 
-public class Error
+public class DomainError
 {
-    public Error()
+    public DomainError()
     {
 
     }
 
-    public Error(string message, HttpStatusCode httpCode)
+    public DomainError(string message, HttpStatusCode httpCode)
     {
         Message = message;
         HttpCode = httpCode;

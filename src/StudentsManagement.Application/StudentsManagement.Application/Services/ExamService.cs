@@ -19,7 +19,7 @@ public class ExamService : IExamService
     {
         var exam = await _examRepository.GetByIdWithDetailsAsyncNoTracking(id);
         if (exam == null)
-            return new DomainResponse<ExamModel> { Errors = [new Error { Message = "Exam not found", HttpCode = System.Net.HttpStatusCode.NotFound }] };
+            return new DomainResponse<ExamModel> { Errors = [new DomainError { Message = "Exam not found", HttpCode = System.Net.HttpStatusCode.NotFound }] };
 
         return new DomainResponse<ExamModel> { Result = exam.Adapt<ExamModel>() };
     }

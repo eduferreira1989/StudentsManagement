@@ -20,7 +20,7 @@ public static class MapsterConfig
 
         TypeAdapterConfig<StudentExamModel, StudentExamResponseDto>
             .NewConfig()
-            .Map(dest => dest.ExamId, src => src.ExamId)
+            .Map(dest => dest.Id, src => src.ExamId)
             .Map(dest => dest.ExamName, src => src.Exam.Name)
             .Map(dest => dest.ExamValue, src => src.Exam.Value)
             .Map(dest => dest.Grade, src => src.Grade)

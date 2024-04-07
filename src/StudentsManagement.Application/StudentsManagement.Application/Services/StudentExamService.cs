@@ -19,7 +19,7 @@ public class StudentExamService : IStudentExamService
         if (examResponse.Errors.Any())
         {
             if (examResponse.Errors.Any(error => error.HttpCode == System.Net.HttpStatusCode.NotFound))
-                return new DomainResponse<StudentExamModel> { Errors = [new Error { Message = "Invalid Exam", HttpCode = System.Net.HttpStatusCode.BadRequest }] };
+                return new DomainResponse<StudentExamModel> { Errors = [new DomainError { Message = "Invalid Exam", HttpCode = System.Net.HttpStatusCode.BadRequest }] };
 
             return new DomainResponse<StudentExamModel> { Errors = examResponse.Errors };
         }

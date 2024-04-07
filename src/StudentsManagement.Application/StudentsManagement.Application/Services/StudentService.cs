@@ -21,7 +21,7 @@ public class StudentService : IStudentService
     {
         var student = await _studentRepository.GetByIdWithDetailsAsyncNoTracking(id);
         if (student == null)
-            return new DomainResponse<StudentModel> { Errors = [new Error { Message = "Student not found", HttpCode = System.Net.HttpStatusCode.NotFound }] };
+            return new DomainResponse<StudentModel> { Errors = [new DomainError { Message = "Student not found", HttpCode = System.Net.HttpStatusCode.NotFound }] };
 
         var studentModel = student.Adapt<StudentModel>();
 

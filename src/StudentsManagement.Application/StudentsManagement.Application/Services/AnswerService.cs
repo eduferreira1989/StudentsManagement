@@ -22,7 +22,7 @@ public class AnswerService : IAnswerService
     {
         var answer = await _answerRepository.GetByIdAsyncNoTracking(id);
         if (answer == null)
-            return new DomainResponse<AnswerModel> { Errors = [new Error { Message = "Answer not found", HttpCode = System.Net.HttpStatusCode.NotFound }] };
+            return new DomainResponse<AnswerModel> { Errors = [new DomainError { Message = "Answer not found", HttpCode = System.Net.HttpStatusCode.NotFound }] };
 
         return new DomainResponse<AnswerModel> { Result = answer.Adapt<AnswerModel>() };
     }
@@ -44,12 +44,12 @@ public class AnswerService : IAnswerService
         // Find the StudentExam
         var studentExam = exam.StudentExams.SingleOrDefault(studentExam => studentExam.StudentId == answer.StudentId);
         if (studentExam == null)
-            return new DomainResponse<AnswerModel> { Errors = [new Error { Message = "Invalid Student", HttpCode = System.Net.HttpStatusCode.BadRequest }] };
+            return new DomainResponse<AnswerModel> { Errors = [new DomainError { Message = "Invalid Student", HttpCode = System.Net.HttpStatusCode.BadRequest }] };
 
         // Find Question
         var question = exam.Questions.SingleOrDefault(question => question.Id == answer.QuestionId);
         if (question == null)
-            return new DomainResponse<AnswerModel> { Errors = [new Error { Message = "Invalid Question", HttpCode = System.Net.HttpStatusCode.BadRequest }] };
+            return new DomainResponse<AnswerModel> { Errors = [new DomainError { Message = "Invalid Question", HttpCode = System.Net.HttpStatusCode.BadRequest }] };
 
         // Check if answer is correct
         var expectedAnswers = question.ExpectedAnswers.ToList();
@@ -73,7 +73,7 @@ public class AnswerService : IAnswerService
         {
             // Validate AnswerId
             if (await _answerRepository.GetByIdAsyncNoTracking(answer.Id) != null)
-                return new DomainResponse<AnswerModel> { Errors = [new Error { Message = "Invalid AnswerId, already in use by another answer", HttpCode = System.Net.HttpStatusCode.BadRequest }] };
+                return new DomainResponse<AnswerModel> { Errors = [new DomainError { Message = "Invalid AnswerId, already in use by another answer", HttpCode = System.Net.HttpStatusCode.BadRequest }] };
 
             studentAnswer = new Answer
             {
@@ -93,17 +93,17 @@ public class AnswerService : IAnswerService
 
     }
 
-    private Error ValidateInput(AddAnswerModel answer)
+    private DomainError ValidateInput(AddAnswerModel answer)
     {
         if (answer == null)
-            return new Error
+            return new DomainError
             {
                 Message = "Input must not be null",
                 HttpCode = System.Net.HttpStatusCode.BadRequest
             };
 
         if (string.IsNullOrWhiteSpace(answer.AnswerText))
-            return new Error
+            return new DomainError
             {
                 Message = "Answer must have a value",
                 HttpCode = System.Net.HttpStatusCode.BadRequest
