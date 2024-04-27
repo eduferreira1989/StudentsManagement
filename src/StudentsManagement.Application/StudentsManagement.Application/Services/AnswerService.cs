@@ -37,7 +37,7 @@ public class AnswerService : IAnswerService
         // Get exam from ExamService
         var examResponse = await _examService.GetExamByIdWithDetails(answer.ExamId);
         if (examResponse.Errors.Any())
-            return new DomainResponse<AnswerModel> { Errors = examResponse.Errors };
+            return new DomainResponse<AnswerModel> { Errors = [new DomainError { Message = "Invalid Exam", HttpCode = System.Net.HttpStatusCode.BadRequest }] };
 
         var exam = examResponse.Result;
 
@@ -90,7 +90,6 @@ public class AnswerService : IAnswerService
         }
 
         return new DomainResponse<AnswerModel> { Result = studentAnswer.Adapt<AnswerModel>() };
-
     }
 
     private DomainError ValidateInput(AddAnswerModel answer)
