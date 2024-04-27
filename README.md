@@ -16,13 +16,13 @@ There are 4 use cases supported by the API:
 
 - GetStudentById: Given the studentId the API returns the student and details the exams, questions and grades for the student (Exam and Question data response is flattened for better readability, Exam grades are not persisted, they are calculated on runtime).
 
-- AddAnswerByExam: Given the examId and the answer payload the API inserts/updates the answer of a student for a given question, from an exam he/she took.
+- AddAnswer: Given the answer payload the API inserts/updates the answer of a student for a given question, from an exam he/she took.
 
 - GetAnswerById: Given the answerId the API returns the details of the answer.
 
 The endpoints can be tested through Swagger which is launched when the application runs:
 
-![image](https://github.com/eduferreira1989/StudentsManagement/assets/31478417/3359a5db-dbb9-4c9c-b5b1-815841d2eb74)
+![image](https://github.com/eduferreira1989/StudentsManagement/assets/31478417/adf78d75-bee1-4468-ac80-5752a90b1272)
 
 ***Database***
 
