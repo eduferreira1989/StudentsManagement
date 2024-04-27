@@ -10,4 +10,4 @@ public record StudentResponseDto(int Id, string Name, DateOnly BirthDate);
 
 public record StudentDetailedResponseDto(int Id, string Name, DateOnly BirthDate, IEnumerable<StudentExamResponseDto> Exams);
 
-public record AddAnswerDto(int Id, int QuestionId, int StudentId, string AnswerText);
+public record AddAnswerDto(int Id, int ExamId, int QuestionId, int StudentId, string AnswerText);

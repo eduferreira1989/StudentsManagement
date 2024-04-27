@@ -46,18 +46,17 @@ public class AnswerController : BaseController
         }
     }
 
-    [HttpPost("addAnswer/{examId}")]
+    [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> AddAnswer(int examId, AddAnswerDto answer)
+    public async Task<IActionResult> AddAnswer(AddAnswerDto answer)
     {
-        _logger.LogInformation("Adding answer for a student for ExamId: {examId}, \n\tPayload: {answer}", examId, answer);
+        _logger.LogInformation("Adding answer, \n\tPayload: {answer}", answer);
         try
         {
             var answerModel = answer.Adapt<AddAnswerModel>();
-            answerModel.ExamId = examId;
 
             var response = await _answerService.AddOrUpdateAnswer(answerModel);
 
