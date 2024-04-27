@@ -6,7 +6,7 @@ Student Management API is a .Net 8 WebApi solution, based on Domain Driven Desig
 
 The solution is structured into the following projects, where the configuration and dependency injection are orchestrated on StudentsManagement.Web.csproj.
 
-![image](https://github.com/eduferreira1989/StudentsManagement/assets/31478417/197d596f-cbef-47bb-8258-2bc37997dfc1)
+![image](https://github.com/eduferreira1989/StudentsManagement/assets/31478417/3c86a323-9e3a-47c4-8e65-b07d7277c4fa)
 
 ***Endpoints***
 
